@@ -152,11 +152,16 @@ return [
     |
     */
 
-    'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
-    ],
+    // 'custom' => [
+    //     'category_name' => [
+    //         'required' => 'The Category Name is Required',
+    //         'unique'=>'Category Name already exists'
+    //     ],
+    //     'cat_desc' => [
+    //         'required' => 'The Description is Required',
+           
+    //     ],
+    // ],
 
     /*
     |--------------------------------------------------------------------------

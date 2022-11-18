@@ -1,23 +1,33 @@
 
+               @auth
+               <x-app-layout>
+               
+                  
+                    </x-app-layout>
+                    @endauth
+              
+    
     @foreach($data as $item)
-        <div class="container" style=" display:flex;justify-content:space-between">
-            <div>
+        <div class="container" style=" display:flex">
+            <div style="flex:1">
                 
-            <img src="{{asset('/uploads/'.$item->file)}}" class="card-img-top" height="600px"  width="600px" alt="...">
+            <img src="{{asset('/uploads/'.$item->file)}}" class="card-img-top my-4" width="90%" style="height:500px;margin-top:2rem"  alt="...">
 
             </div>
-            <div style="align-self:center;margin-right:30rem;gap:2rem;display:flex;flex-direction:column">
-            <div>
+            <div style="flex:1;margin-left:20px;margin-top:200px;display:flex;gap:2rem;flex-direction:column" >
+               <div>
               <span><b> Product Name</b></h4> <span>{{$item->name}}</span>
               </div> 
               <div>
-              <span><b> Price</b></h4> <span>100$</span>
+              <span><b> Price</b></h4> <span>$100</span>
               </div> 
               <div>
-              <span><b> Quantity</b></h4> <input type="text" id="item" onkeyup="totalPrice()"  style="width:100px;padding:10px" value="1">
+              <span><b> Quantity available</b></h4> <span>{{$item->quantity}}</p>
               </div> 
               <div>
-              <span><b> Total Price</b></h4> <input type="text" value="100" id="total" style="width:100px;padding:10px" disabled>
+              <span><b> Description</b></h4> <span>{{$item->description}}</p>
+              </div> 
+              <div>
               </div> 
             
             </div>
@@ -25,6 +35,7 @@
         @endforeach
      
 <script>
+   
     let total=document.getElementById('total');
     console.log(total);
     function totalPrice(){
