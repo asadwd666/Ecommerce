@@ -62,7 +62,7 @@
 
 <thead>
   <tr>
-    <th scope="col">#</th>
+    <th scope="col ">#</th>
     <th scope="col">Category Name</th>
     <th scope="col">Description</th>
     <th>Actions</th>
@@ -124,18 +124,21 @@
   <tr>
     <form action="{{url('update_category')}}" method="post">
         @csrf
-      <td>{{$i++}}</td>
+      <td style="">
+      <div class="col">
+        {{$i++}}</td>
+</div>
       <td>
      <div class="row">
          <div class="col">
-              <input type="text" name="category_name" class="form-control" style="border: 1px solid #ced4da !important; !important;" value="{{$category->category_name}}" placeholder="First name" aria-label="First name">
+              <input type="text" name="category_name" class="form-control" style="border:none;border-bottom:2px solid #ced4da !important;" value="{{$category->category_name}}" placeholder="First name" aria-label="First name">
          </div>
          <input type="hidden" name="id" value="{{$category->id}}">
      </td>
      <td>
         
          <div class="col">
-              <input type="text" name="category_desc" style="border: 1px solid #ced4da !important;" class="form-control" value="{{$category->category_desc}}" >
+              <input type="text" name="category_desc" style="border:none;border-bottom:2px solid #ced4da !important;" class="form-control" value="{{$category->category_desc}}" >
          </div>
      </td>
     </div>
