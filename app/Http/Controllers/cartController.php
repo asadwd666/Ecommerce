@@ -26,41 +26,16 @@ class cartController extends Controller
           $cart=new Cart($oldcart);
           $cart->add($product,$product->id);
           $req->session()->put('cart',$cart,$product->name,$product->file);
-//           $req->session()->forget(['cart']);
- 
-// $req->session()->flush();
-      //  dd($req->session()->get('cart'));
 
          
         return redirect('/');
-      //  dd($req->session()->get('cart'));
-      //     $cart=[
-      //      'user_name'=> $user->name,
-      // 'email'=> $user->email,
-      //     'product'=> $product->name,
-      //  'price'=> $product->price,
-      //    'file'=> $product->file,
-      //    'product_id'=>$product->id
-      //     ];
      
-      // $req->session()->flash()
-       
-   
-     
-        //  $data=Session::push('cart',$cart);
-       
-          // return back()->with('message','successfully added to cart');
    
         } 
            return redirect('login');
     }
-    // public function getcartdata(){
-
-    //   $getData=Cart::where('user_id','=',auth()->user()->id)->get();
-    //   return view('showcart',['getData'=>$getData]);
-    //   // dd(auth()->user()->id,$getData);
-
-    // }
+   
+ 
     public function show_cart_data(Request $request){
      
    $check=Session::get('cart');

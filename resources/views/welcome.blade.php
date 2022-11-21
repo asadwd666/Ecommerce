@@ -84,8 +84,8 @@ $count=Session::get('cart')->totalQuantity;
                    
                     @else
                     <!-- <div class="mb-4 my-2  py-2" > -->
-                        <div style="display:flex;justify-content:space-between;height:15vh;">
-                    <img src="{{asset('images/shop-bag.svg')}}" class="height:50px" style="" alt="" class="align-self-start" style="transform:scale(0.9)">
+                        <div style="display:flex;justify-content:end;height:15vh;">
+                    <!-- <img src="{{asset('images/shop-bag.svg')}}" class="height:50px" style="" alt="" class="align-self-start" style="transform:scale(0.9)"> -->
                     <div style="align-self:center;margin-right:4rem;">
                         <a href="{{ route('login') }}" style="text-decoration:none"  class="ancher text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 

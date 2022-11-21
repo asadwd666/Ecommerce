@@ -51,6 +51,9 @@ Route::get("getcartdata",[cartController::class,'show_cart_data']);
 Route::post('adding_items',[addproduct::class,'index']);
 Route::get('product',[addproduct::class,'getCategory']);
 Route::post('add_category',[cat::class,'addcategory']);
+Route::get('view_category',[cat::class,'view_category']);
 Route::get('Category',function(){
     return view('category');
 });
+Route::post('delete_category',[cat::class,'delete_category']);
+Route::post('update_category',[cat::class,'update_category']);

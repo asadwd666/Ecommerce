@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Category;
-use App\Models\Product;
+use App\Http\Requests\ProductRequest;
 
 
 class addproduct extends Controller
 {
     //
 
-    public function index(Request $request){
+
+    public function index(ProductRequest $request){
+        $validated = $request->validated();
 
         // dd($request->all());
     
@@ -32,12 +35,11 @@ class addproduct extends Controller
         $data->quantity= $request->product_quantity;
             
         $data->description= $request->product_dsc;
-        // $abc=$request->product_img->getClientOriginalName();
-        // dd($abc);
+    // dd($data);
         $data->save();
        
 
-return back()->with('success','succesfully added');
+return back()->with('message','succesfully added');
     }
     public function getCategory(){
         $categories=Category::with('products')->get();

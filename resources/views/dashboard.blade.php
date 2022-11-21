@@ -16,20 +16,21 @@
 <x-app-layout>
    
 </x-app-layout>
-<div class="container-fluid w-100">
-  <div class="leftbar  bg-secondary   text-light" style="width:10%;margin-left:-0.8rem">
-  <ul class="d-flex flex-col p-4 align-center justify-content-center p-b-4 h-100" style="gap:4rem ">
-    <li style="margin-top:-8rem">
-      <a href="{{url('dashboard')}}" class="active">Home</a>
-    </li>
-    <li>
-      <a href="{{url('Category')}}">Category</a>
-    </li>
-    <li>
-      <a href="{{url('product')}}">Product</a>
-    </li>
+<div class="container-fluid ">
+<div class="leftbar   bg-secondary     text-light" style="width:10%;margin-left:-1.5rem;">
+        <ul class="d-flex flex-col mt-2 ml-4" style="gap:1rem;height:88.5vh">
+             <li class="ml-4 mt-2" >
+               <a href="{{url('dashboard')}}" class="active">Home</a>
+              </li>
+              <li class="ml-4 mt-2">
+                   <a href="{{url('Category')}}" class="">Category</a>
+                </li>
+            <li class="ml-4 mt-2">
+               <a href="{{url('product')}}" class="">Product</a>
+          </li>
    
-  </ul>
-</div>
+        </ul>
+
+    </div>
   <div class="main" style="width:90%"></div>
 </div>

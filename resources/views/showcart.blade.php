@@ -1,4 +1,67 @@
 <head>
+  <style>
+    .qty .count {
+    color: #000;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+    padding: 0 2px
+    ;min-width: 35px;
+    text-align: center;
+}
+.qty .plus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    }
+    .qty .minus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    background-clip: padding-box;
+}
+div {
+    text-align: center;
+}
+.minus:hover{
+    background-color: #717fe0 !important;
+}
+.plus:hover{
+    background-color: #717fe0 !important;
+}
+span{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+input{  
+    border: 0;
+    width: 2%;
+}
+nput::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input:disabled{
+    background-color:white;
+}
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -10,6 +73,44 @@
 
                   
                     </x-app-layout>
+                    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+  @if(Session::has('cart'))
+@php
+$i=0;
+@endphp
+@foreach($products as $product)
+    <tr>
+      <th scope="row">{{$i++}}</th>
+      <td>{{$product['name']}}</td>
+      <td>{{$totalPrice}}</td>
+      <td>{{$product['qty']}}
+
+      <div class="qty mt-5">
+                        <span class="minus bg-dark">-</span>
+                        <input type="number" class="count{{$i++}}" name="qty" value="{{$product['qty']}}">
+                        <button class="plus bg-dark" value="{{$product['qty']}}"  onclick="
+                        let qa=document.getElementsByClassName(count{{$i-1}}).value;
+                        console.log(qa)
+
+                        ">+</button>
+                    </div>
+      </td>
+    </tr>
+    @endforeach
+@endif
+
+   
+  </tbody>
+</table>
 
 <!-- {{ Session::get('name') }} -->
 @if(Session::has('cart'))
@@ -59,5 +160,8 @@
   timer: 1500
 }) 
    }
+
+  
+  
 </script>
 

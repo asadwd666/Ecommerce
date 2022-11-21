@@ -12,28 +12,49 @@
 
 </x-app-layout>
 
-<div class="container-fluid w-100">
-  <div class="leftbar  bg-secondary   text-light" style="width:10%;height:90%;margin-left:-0.8rem">
-  <ul class="d-flex flex-col p-4 align-center justify-content-center p-b-4 h-100" style="gap:4rem ">
-    <li style="margin-top:-8rem">
-      <a href="{{url('dashboard')}}" class="">Home</a>
-    </li>
-    <li>
-      <a href="{{url('Category')}}" class="active">Category</a>
-    </li>
-    <li>
-      <a href="{{url('product')}}">Product</a>
-    </li>
-   
-  </ul>
+<div class="container-fluid row">
+<div class="leftbar   bg-secondary     text-light" style="width:10%;margin-left:-1.5rem;">
+        <ul class="d-flex flex-col mt-2 ml-4" style="gap:1rem;height:88.5vh">
+        <li >
+                 <a href="{{url('dashboard')}}" class="">Home</a>
+              </li>
+              <li>
+                <div class="dropdown bg-transparent border-none mx-n2">
+                    <button class="btn text-white dropdown-toggle" style="margin-left:-1rem" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          Category
+                    </button>
+                    <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton1">
+                        <li> <a href="{{url('Category')}}" class="dropdown-item" >Add Category</a> </li>        
+                        <li><a class="dropdown-item" href="{{url('view_category')}}"  href="#">view Category</a></li>
+                    </ul>
+                 </div>
+ 
+                   
+                </li>
+                <li>
+                <div class="dropdown bg-transparent border-none mx-n2">
+                    <button class="btn text-white dropdown-toggle" style="margin-left:-1rem" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          Product
+                    </button>
+                    <ul class="dropdown-menu w-50" aria-labelledby="dropdownMenuButton1">
+                        <li> <a href="{{url('product')}}" class="dropdown-item" >Add Product</a> </li>        
+                        <li><a class="dropdown-item"  href="#">view Product</a></li>
+                    </ul>
+                 </div>
+ 
+                   
+                </li>
+           
+        </ul>
 
-</div>
+    </div>
+  
   
 
 
   <div class="main" style="width:90%">
   @if(session()->has('message'))
-    <div class="alert alert-success w-25" style="position:absolute;left:15rem;top:10rem">
+    <div class="alert alert-success w-25" style="position:absolute;left:15rem;top:6rem">
         {{ session()->get('message') }}
     </div>
 @endif
@@ -69,4 +90,5 @@
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
