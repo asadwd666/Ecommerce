@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\AddCategoryRequest;
+use App\Models\Product;
 use App\Models\Category;
 use App\Rules\NotNumber;
+use Illuminate\Http\Request;
+use App\Http\Requests\AddCategoryRequest;
 
 class cat extends Controller
 {
@@ -29,8 +30,18 @@ class cat extends Controller
     }
     function delete_category(Request $request){
        $id=$request->id;
-       Category::where('id',$id)->delete();
-       return back()->with('message','succesfully deleted');
+      //  dd($id);
+     if(Product::where('category_id','=',$id)->count()>0){
+      // dd($id);
+      return back()->with('message','You cant delete this,coz its product exists. product should be deleted ist');
+  
+
+     }
+    //  dd('not exist');
+     Category::where('id',$id)->delete();
+
+     return back()->with('message','succesfully deleted');
+       
 
     }
     function update_category(Request $request){

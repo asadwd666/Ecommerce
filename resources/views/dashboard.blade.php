@@ -17,20 +17,41 @@
    
 </x-app-layout>
 <div class="container-fluid ">
-<div class="leftbar   bg-secondary     text-light" style="width:10%;margin-left:-1.5rem;">
+<div class="leftbar   bg-secondary   text-light" style="width:10%;float:left;margin-left:-1.3rem;">
         <ul class="d-flex flex-col mt-2 ml-4" style="gap:1rem;height:88.5vh">
-             <li class="ml-4 mt-2" >
-               <a href="{{url('dashboard')}}" class="active">Home</a>
+        <li >
+                 <a href="{{url('dashboard')}}" class="">Home</a>
               </li>
-              <li class="ml-4 mt-2">
-                   <a href="{{url('Category')}}" class="">Category</a>
+              <li>
+                <div class="dropdown bg-transparent border-none mx-n2">
+                    <button class="btn text-white dropdown-toggle" style="margin-left:-1rem" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          Category
+                    </button>
+                    <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton1">
+                        <li> <a href="{{url('Category')}}" class="dropdown-item" >Add Category</a> </li>        
+                        <li><a class="dropdown-item" href="{{url('view_category')}}"  href="#">view Category</a></li>
+                    </ul>
+                 </div>
+ 
+                   
                 </li>
-            <li class="ml-4 mt-2">
-               <a href="{{url('product')}}" class="">Product</a>
-          </li>
-   
+                <li>
+                <div class="dropdown bg-transparent border-none mx-n2">
+                    <button class="btn text-white dropdown-toggle" style="margin-left:-1rem" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          Product
+                    </button>
+                    <ul class="dropdown-menu w-50" aria-labelledby="dropdownMenuButton1">
+                        <li> <a href="{{url('product')}}" class="dropdown-item" >Add Product</a> </li>        
+                        <li><a class="dropdown-item"  href="{{url('view_product')}}">view Product</a></li>
+                    </ul>
+                 </div>
+ 
+                   
+                </li>
+           
         </ul>
 
     </div>
   <div class="main" style="width:90%"></div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

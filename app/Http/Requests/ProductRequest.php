@@ -25,7 +25,7 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_name'=>['required','regex:/[a-zA-Z]/'],
+            'name'=>['required','regex:/[a-zA-Z]/','unique:products'],
             'category'=>'required',
             'product_img'=>'required',
             'price'=>['required'],
@@ -37,9 +37,9 @@ class ProductRequest extends FormRequest
     {
         return [
         
-            'product_name.required' => 'Product Name is required!',
-            'product_name.regex' => 'Please Provide a valid product name!',
-
+            'name.required' => 'Product Name is required!',
+            'name.regex' => 'Please Provide a valid product name!',
+            'name.unique'=>'Product already exist',
             'category.required' => 'Category  is required!',
             'product_img.required' => 'Prouct image  is required!',
             'price.required' => 'Price   is required!',

@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use DB;
+
+use App\Cart;
+use App\Models\Product;
+use Illuminate\Http\Request;
+
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use DB;
-use App\Models\Product;
-use App\Cart;
-
-
-use Illuminate\Http\Request;
 
 class cartController extends Controller
 {
@@ -49,4 +50,34 @@ class cartController extends Controller
       
    return view('showcart',['products'=>$cart->items,'totalPrice'=>$cart->totalPrice]);
     }
+    public function RemoveCartItem(Request $request){
+      
+      $cart = Session::get('cart');
+      unset($cart->items[$request->proId]);
+      return response()->json([
+        'success' => true
+      ]);
+  }
+  public function checkout_data(Request $request){
+  
+   
+      
+        $quantity = $request->quantity;
+    
+        $cart=Session::get('cart');
+        
+      
+      $price=$cart->items[$request->proId]['price'];
+      $cart->items[$request->proId]['qty'] = $quantity;
+      $totalamount=$price*$quantity;
+      $cart->items[$request->proId]['totalamount']=$totalamount;
+     
+      
+
+    
+  }
+    
+   
+
+  
 }

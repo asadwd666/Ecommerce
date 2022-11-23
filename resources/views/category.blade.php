@@ -38,7 +38,7 @@
                     </button>
                     <ul class="dropdown-menu w-50" aria-labelledby="dropdownMenuButton1">
                         <li> <a href="{{url('product')}}" class="dropdown-item" >Add Product</a> </li>        
-                        <li><a class="dropdown-item"  href="#">view Product</a></li>
+                        <li><a class="dropdown-item"  href="{{url('view_product')}}">view Product</a></li>
                     </ul>
                  </div>
  

@@ -27,7 +27,7 @@
                     </button>
                     <ul class="dropdown-menu w-50" aria-labelledby="dropdownMenuButton1">
                         <li> <a href="{{url('Category')}}" class="dropdown-item" >Add Category</a> </li>        
-                        <li><a class="dropdown-item"  href="#">view Category</a></li>
+                        <li><a class="dropdown-item"  href="{{url('view_category')}}">view Category</a></li>
                     </ul>
                  </div>
  
@@ -40,7 +40,7 @@
                     </button>
                     <ul class="dropdown-menu w-50" aria-labelledby="dropdownMenuButton1">
                         <li> <a href="{{url('product')}}" class="dropdown-item" >Add Product</a> </li>        
-                        <li><a class="dropdown-item"  href="#">view Product</a></li>
+                        <li><a class="dropdown-item"  href="{{url('view_product')}}">view Product</a></li>
                     </ul>
                  </div>
  
@@ -68,9 +68,9 @@
 
   <div class="col-auto">
     <label for="product_name" class="">Name</label>
-    <input type="text" value="{{old('product_name')}}" name="product_name"  class="form-control " style="border: 1px solid #ced4da !important;" placeholder="Product name here">
+    <input type="text" value="{{old('name')}}" name="name"  class="form-control " style="border: 1px solid #ced4da !important;" placeholder="Product name here">
   </div>
-  @error('product_name')
+  @error('name')
      <p class="text-danger"> {{$message}}</p>
       @enderror
  

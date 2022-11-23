@@ -46,14 +46,23 @@ Route::post("addToCart/{id}",[cartController::class,'cart']);
 Route::get("cart/{id}",[cartController::class,'index']);
 // Route::get("getcartdata",[cartController::class,'getcartdata']);
 Route::get("getcartdata",[cartController::class,'show_cart_data']);
+Route::get('checkout-form',[cartController::class,'checkout_data']);
+Route::get('remove-item-from-cart',[cartController::class,'RemoveCartItem'])->name('remove-item-from-cart');
+
 
 
 Route::post('adding_items',[addproduct::class,'index']);
 Route::get('product',[addproduct::class,'getCategory']);
+Route::get('view_product',[addproduct::class,'view_product']);
+Route::post('delete_product',[addproduct::class,'delete_product']);
+
 Route::post('add_category',[cat::class,'addcategory']);
+
+
 Route::get('view_category',[cat::class,'view_category']);
 Route::get('Category',function(){
     return view('category');
 });
 Route::post('delete_category',[cat::class,'delete_category']);
 Route::post('update_category',[cat::class,'update_category']);
+

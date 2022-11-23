@@ -17,12 +17,15 @@ class Cart{
         }
     }
     public function add($item,$id){
-        $storeditem=['qty'=>0,'price'=>$item->price,'item'=>$item,'name'=>$item->name,'file'=>$item->file];
+        $storeditem=['qty'=>0,'totalamount'=>$item->price,'price'=>$item->price,'item'=>$item,'name'=>$item->name,'file'=>$item->file];
         if($this->items){
 if(array_key_exists($id,$this->items)){
-    $storeditem=$this->items[$id];
+   return back();
+    // $storeditem=$this->items[$id];
 }
+// dd('dhhjd');
         }
+        // dd('not okey');
         $storeditem['qty']++;
         $storeditem['price']=$item->price*$storeditem['qty'];
 

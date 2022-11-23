@@ -12,12 +12,10 @@ class getData extends Controller
       if(!Auth::user()){
       $data=  DB::table('products')->select()->get();
       return view('welcome',['data'=>$data]);
-    } elseif (Auth::user()->hasRole('user') ) {
+    } else{
       $data=  DB::table('products')->select()->get();
       return view('welcome',['data'=>$data]);
-  } elseif(Auth::user()->hasRole('admin')){
-    return view('dashboard');
-  }
+  } 
      
 
     }

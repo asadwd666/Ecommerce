@@ -21,7 +21,7 @@ class addproduct extends Controller
         // dd($request->all());
     
         $data = new Product;
-        $data->name=$request->product_name;
+        $data->name=$request->name;
         $data->category=$request->category;
         $category_name=$request->category;
     
@@ -50,5 +50,15 @@ return back()->with('message','succesfully added');
         // }
         // dd($category->products);
        return view('product',['categories'=>$categories]);
+    }
+    public function view_product(){
+      $products= Product::all();
+      
+        return view('view_product',['products'=>$products]);
+    }
+    public function delete_product(Request $request){
+        $id=$request->id;
+    Product::where('id','=',$id)->delete();
+    return back()->with('message','successfully deleted');
     }
 }
