@@ -45,19 +45,50 @@ input:disabled{
  margin-left:5px;
 }
 
+         
+
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
   @auth
-                    
-                    <x-app-layout>
+                    <div style="width:100%">
+                    <x-app-layout >
                  
+                 <a href="{{ url('getcartdata') }}" >
+                   <span class="material-symbols-outlined" onclick="myfun()" style="float:right;margin-right:2rem;cursor:pointer">
+                           shopping_cart
+                   </span>
+                   </a>
+                   @if(Session::get('cart'))
+                   <?php
+                   $count=Session::get('cart')->totalQuantity;
+                   ?>
+                   <span class="text-danger float-end border-rounded  " style="z-index:-1;margin-right:-2.3rem;margin-top:-1.6rem;background-color:LightGray;border-radius:100%;transform:scale(0.5);padding:10px">
+                   {{$count}}
 
+                   </span>
+
+                   @endif
+                                     
+                 </x-app-layout>
+                    </div>
+                    @if(Session::has('message'))
+        <script>
+        Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'sorry we are out of stock!',
                   
-                    </x-app-layout>
+                    })
+        </script>
+
+        @endif
+                  
                     <div class="container mt-5">
             
                      <table class="table">
@@ -76,6 +107,7 @@ input:disabled{
                       
                       {{ csrf_field()}}
                       @if(Session::has('cart'))
+                      
                
 
                     @foreach($products as $product)
@@ -105,7 +137,7 @@ input:disabled{
                         @endforeach
                         <tr class="overall_price ">
                           <td colspan="2" style="">
-                            <span class="h4 ml-5 ">Total To Pay  :</span>
+                            <span class="h4 ml-5 payable">Total To Pay  :</span>
                               
                           </td>
                           <td colspan="2" style="">
@@ -113,7 +145,11 @@ input:disabled{
                                </p>
                           </td>
                           <td>
-<button onclick="$('.table').hide()"  style="background-color:blue" class="btn btn-primary checkout" >Checkout</a>
+                            <form action="{{url('checkout-data')}}" method="get" class="checkoutform">
+                              
+                              @csrf
+                               <button    style="background-color:blue" id="checkout" class="btn btn-primary ">Checkout</a>
+                             </form>
 
 
                           </td>
@@ -123,9 +159,7 @@ input:disabled{
 
 
 </table>
-<div class="checkout">
 
-</div>
 
 
 
@@ -136,8 +170,30 @@ input:disabled{
 
 
   //////////////////////////////////////
+  $(document).on('click','.checkoutform', function()
+  { 
+    var payable= $('#sum').text();
+  console.log(payable);
+    $.ajax({
+      type: 'get',
+      data: {
+        "_token": "{{ csrf_token()}}",
+        'payable':payable
+      },
+      url: '{{url("checkout-form-data")}}',
+      dataType: 'json',
+      async : false,   
+      success: function(response) 
+      {
+        
+      }
+    });
+  
+});
+
+  
   var incrementPlus;
-var incrementMinus;
+  var incrementMinus;
 
 
 
@@ -148,6 +204,8 @@ var buttonMinus = $(".cart-qty-minus");
 
 
 var incrementPlus = buttonPlus.click(function() {
+
+
 	var n = $(this)
 		.parent(".button-container")
 		.parent(".parent")
@@ -170,21 +228,23 @@ var quantity=$(this)
 		.parent(".parent")
 		.find(".quantity").val();
 
-    
+ var payable= $('#sum').text();
 
 $.ajax({
       type: 'get',
       data: {
         "_token": "{{ csrf_token()}}",
         'proId' : proId,
-        'quantity':quantity
+        'quantity':quantity,
+        'payable':payable
       },
       url: '{{url("checkout-form")}}',
       dataType: 'json',
       async : false,   
       success: function(data) 
       {
-        window.location.reload();
+        
+      
       }
     });
   
@@ -205,28 +265,11 @@ var incrementMinus = buttonMinus.click(function() {
 
 
   let proId = $(this).data('pid');
-var quantity=$(this)
-		.parent(".button-container")
-		.parent(".parent")
-		.find(".quantity").val();
 
     
 
-$.ajax({
-      type: 'get',
-      data: {
-        "_token": "{{ csrf_token()}}",
-        'proId' : proId,
-        'quantity':quantity
-      },
-      url: '{{url("checkout-form")}}',
-      dataType: 'json',
-      async : false,   
-      success: function(data) 
-      {
-        window.location.reload();
-      }
-    });
+
+calc_total();
   
 
   
@@ -234,7 +277,14 @@ $.ajax({
 		.parent(".minus")
 		.parent(".parent")
 		.find(".quantity");
+    
 	var amount = Number(n.val());
+  var quantity= $(this)
+		.parent(".minus")
+		.parent(".parent")
+		.find(".quantity").val();
+ 
+
 
 	if (amount > 0) {
 		n.val(amount-1);
@@ -243,9 +293,25 @@ $.ajax({
     var data=Math.round(currentRow*n.val());
  var d=$(this).closest("tr").children('.totalprice').find('.total').attr('value',data);
 
+ var payable= $('#sum').text();
+ $.ajax({
+      type: 'get',
+      data: {
+        "_token": "{{ csrf_token()}}",
+        'proId' : proId,
+        'quantity':quantity,
+        'payable':payable
+      },
+      url: '{{url("checkout-form-minus")}}',
+      dataType: 'json',
+      async : false,   
+      success: function(data) 
+      {
+        window.location.reload();
+      }
+    });
  
 
-calc_total();
 if(n.val()<1)
 {
   let proId = $(this).data('pid');
@@ -271,24 +337,7 @@ if(n.val()<1)
 	}
 });
 
-// $(document).on('submit','.checkoutform',function(e){
- 
-//   e.preventDefault();
-//   alert('here');
-//   $.ajax({
-//     type:'post',
-//     data:new FormData(this),
-//     contentType:false,
-//     cache:false,
-//     processData:false,
-//     url:"{{url('checkout-data')}}",
-//     dataType:'json',
-//     success:function(data){
-//       // location.reload();
-//     }
 
-//   })
-// })
 
 
   

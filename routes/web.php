@@ -47,6 +47,11 @@ Route::get("cart/{id}",[cartController::class,'index']);
 // Route::get("getcartdata",[cartController::class,'getcartdata']);
 Route::get("getcartdata",[cartController::class,'show_cart_data']);
 Route::get('checkout-form',[cartController::class,'checkout_data']);
+Route::get('checkout-form-minus',[cartController::class,'checkout_data_minus']);
+Route::get('checkout-data',[cartController::class,'checkout_items']);
+Route::get('checkout-form-data',[cartController::class,'totalpayment']);
+Route::post('confirm_cart',[cartController::class,'confirm_cart']);
+
 Route::get('remove-item-from-cart',[cartController::class,'RemoveCartItem'])->name('remove-item-from-cart');
 
 

@@ -14,7 +14,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <x-app-layout>
-   
+
 </x-app-layout>
 <div class="container-fluid ">
 <div class="leftbar   bg-secondary   text-light" style="width:10%;float:left;margin-left:-1.3rem;">

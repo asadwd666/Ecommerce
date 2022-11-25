@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -44,10 +45,7 @@
     </head>
     <body class="antialiased">
 <h1 class="text-danger">
-@if(Session::has('message'))
 
-<p class="alert alert-info">{{ Session::get('message') }}</p>
-@endif
 </h1>
         <div >
             @if (Route::has('login'))
@@ -69,11 +67,11 @@
                     </a>
                     @if(Session::get('cart'))
  
- <?php
-$count=Session::get('cart')->totalQuantity;
- ?>
-                    <span class="text-danger float-end border-rounded  " style="margin-right:-2.4rem;z-index:1;margin-top:-1.6rem;background-color:LightGray;border-radius:100%;transform:scale(0.5);padding:10px">
- {{$count}}
+                    <?php
+                    $count=Session::get('cart')->totalQuantity;
+                    ?>
+                                        <span class="text-danger float-end border-rounded  " style="margin-right:-2.4rem;z-index:1;margin-top:-1.6rem;background-color:LightGray;border-radius:100%;transform:scale(0.5);padding:10px">
+                    {{$count}}
 
         </span>
        
@@ -105,6 +103,33 @@ $count=Session::get('cart')->totalQuantity;
             @endif 
       
         <div class="row  my-5" style="width:100%">
+        @if(Session::has('message'))
+        <script>
+        Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'sorry we are out of stock!',
+                  
+                    })
+        </script>
+
+        @endif
+        
+      
+      <div class="row  my-5" style="width:100%">
+      @if(Session::has('success'))
+      <script>
+      Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'succesfully added to cart',
+            showConfirmButton: false,
+            timer: 1500
+            })
+      </script>
+
+      @endif
+
             @foreach($data as $item)
                 <div class="card col-auto mx-5 my-5 p-0 col-md-4"  style="width: 18rem;" >
                    <a href="{{ url('cart/'.$item->id)}}" class="col-md-4 p-0 m-0 card-img-top" >
